@@ -1,0 +1,39 @@
+body {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+#main-container {
+  padding-left: 0px;
+  padding-right: 0px;
+  height: inherit;
+}
+
+#top-nav {
+  position: absolute;
+  width: 100%;
+}
+
+#main-row {
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-top: 56px;
+  height: inherit;
+}
+
+#side-bar-col {
+  padding: 15px;
+  overflow-y: scroll;
+}
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
+
+#main-col {
+  padding: 15px;
+}
+#main-card {
+  height: 100%;
+}
