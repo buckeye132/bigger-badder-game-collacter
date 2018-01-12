@@ -1,0 +1,23 @@
+{
+  "name": "bigger-badder-game-collacter",
+  "version": "0.1.0",
+  "description": "",
+  "main": "main.js",
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^1.7.10"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/buckeye132/bigger-badder-game-collacter.git"
+  },
+  "author": "buckeye132",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/buckeye132/bigger-badder-game-collacter/issues"
+  },
+  "homepage": "https://github.com/buckeye132/bigger-badder-game-collacter#readme"
+}
