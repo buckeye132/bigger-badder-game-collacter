@@ -9,6 +9,7 @@
   <body>
     
     <div class="container-fluid" id="main-container">
+      <!-- Navbar -->
       <nav class="navbar navbar-dark bg-dark" id="top-nav">
         <span class="navbar-brand" id="title-brand">Bigger Badder Game Collacter</span>
         <form class="form-inline">
@@ -23,48 +24,57 @@
           </a>
         </form>
       </nav>
+
+      <!-- Main Body -->
       <div id="drag-box"></div>
       <div class="row" id="main-row">
+        <!-- Side Bar -->
         <div class="col-lg-4" id="side-bar-col">
-          <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action active">
-              Cras justo odio
-            </a>
-            <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-            <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-            <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-            <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-            <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-            <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-            <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-            <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-            <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-            <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-            <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-            <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-            <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-            <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-            <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-            <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-            <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-            <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-            <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-            <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-            <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-            <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-            <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-            <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-            <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-            <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-            <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-            <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-          </div>
+        <div class="row"><div class="col-lg-12">
+          <button class="btn btn-primary" id="add-game-btn" data-toggle="modal" data-target="#new-game-modal">
+            Add Game
+          </button>
+        </div></div>
+        <div class="row" id="game-list-row"><div class="col-lg-12" id="game-list-col">
+            <div class="list-group" id="game-list">
+              <a href="#" class="list-group-item list-group-item-action disabled">
+                No Games Added.
+              </a>
+            </div>
+          </div></div>
         </div>
+
+        <!-- Content -->
         <div class="col-lg-8" id="main-col">
           <div class="card" id="main-card">
             <div class="card-body">
               This is some text within a card body.
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Game Modal -->
+    <div class="modal fade" id="new-game-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add Game</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form onsubmit="return addGame()">
+              <div class="form-group">
+                <label for="gameNameInput">Name</label>
+                <input type="text" class="form-control" id="gameNameInput" placeholder="Enter name of game">
+              </div>
+              <button type="submit" class="btn btn-primary">Add</button>
+            </form>
+          </div>
+          <div class="modal-footer">
           </div>
         </div>
       </div>

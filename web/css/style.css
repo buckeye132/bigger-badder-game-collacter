@@ -54,7 +54,18 @@ body {
 /* Left Side Bar */
 #side-bar-col {
   padding: 15px;
+}
+/* New Game Button */
+#add-game-btn {
+  width: 100%;
+  margin-bottom: 10px;
+}
+/* Game List */
+#game-list-col {
   overflow-y: scroll;
+}
+#game-list-row {
+  height: calc(100% - 48px);
 }
 ::-webkit-scrollbar {
     width: 0px;
