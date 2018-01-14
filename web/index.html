@@ -10,8 +10,20 @@
     
     <div class="container-fluid" id="main-container">
       <nav class="navbar navbar-dark bg-dark" id="top-nav">
-        <span class="navbar-brand mb-0 h1">Bigger Badder Game Collacter</span>
+        <span class="navbar-brand" id="title-brand">Bigger Badder Game Collacter</span>
+        <form class="form-inline">
+          <a onclick="minimize()" href="#" class="window-control-link">
+            <svg class="window-control"><use xlink:href="#entypo-squared-minus" /></svg>
+          </a>
+          <a onclick="maximize()" href="#" class="window-control-link">
+            <svg class="window-control"><use xlink:href="#entypo-squared-plus" /></svg>
+          </a>
+          <a onclick="closeWindow()" href="#" class="window-control-link">
+            <svg class="window-control-red"><use xlink:href="#entypo-squared-cross" /></svg>
+          </a>
+        </form>
       </nav>
+      <div id="drag-box"></div>
       <div class="row" id="main-row">
         <div class="col-lg-4" id="side-bar-col">
           <div class="list-group">
@@ -62,5 +74,6 @@
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./js/app.js"></script>
   </body>
 </html>

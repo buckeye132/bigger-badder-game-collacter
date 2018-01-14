@@ -3,25 +3,55 @@ body {
   width: 100%;
   position: absolute;
 }
-
 #main-container {
   padding-left: 0px;
   padding-right: 0px;
   height: inherit;
 }
 
+/* Nav Bar */
 #top-nav {
   position: absolute;
   width: 100%;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+#title-brand {
+  font-size: 1.0rem;
+}
+[class^=window-control] {
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+}
+.window-control-red:hover {
+  fill: #dc3545;
+}
+.window-control:hover {
+  fill: #ccc;
+}
+.window-control-link {
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+#drag-box {
+  -webkit-app-region: drag;
+  position: absolute;
+  width: calc(100% - 140px);
+  height: 34px;
 }
 
+/* Main Body */
 #main-row {
   margin-left: 0px;
   margin-right: 0px;
-  padding-top: 56px;
+  padding-top: 34px;
   height: inherit;
 }
 
+/* Left Side Bar */
 #side-bar-col {
   padding: 15px;
   overflow-y: scroll;
@@ -31,6 +61,7 @@ body {
     background: transparent; /* make scrollbar transparent */
 }
 
+/* Content Card */
 #main-col {
   padding: 15px;
 }

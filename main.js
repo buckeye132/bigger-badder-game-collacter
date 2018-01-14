@@ -1,4 +1,4 @@
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, Menu} = require('electron')
 const path = require('path')
 const url = require('url')
 
@@ -7,8 +7,10 @@ const url = require('url')
 let win
 
 function createWindow () {
+  Menu.setApplicationMenu(null);
+
   // Create the browser window.
-  win = new BrowserWindow({width: 1500, height: 800})
+  win = new BrowserWindow({width: 1500, height: 800, frame: false})
 
   // and load the index.html of the app.
   win.loadURL(url.format({
