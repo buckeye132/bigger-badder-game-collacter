@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-    
+
     <div class="container-fluid" id="main-container">
       <!-- Navbar -->
       <nav class="navbar navbar-dark bg-dark" id="top-nav">
@@ -57,7 +57,7 @@
 
     <!-- Add Game Modal -->
     <div class="modal fade" id="new-game-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
+      <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Add Game</h5>
@@ -67,11 +67,115 @@
           </div>
           <div class="modal-body">
             <form onsubmit="return addGame()">
-              <div class="form-group">
-                <label for="gameNameInput">Name</label>
-                <input type="text" class="form-control" id="gameNameInput" placeholder="Enter name of game">
+
+              <!--Start 1st Row -->
+              <div class="form-group row">
+                <div class="col-sm-8">
+                  <label for="gameNameInput">Name</label>
+                  <input type="text" class="form-control" id="gameNameInput" placeholder="Enter name of game">
+                </div>
+                <div class="col-sm-4">
+                  <label for="gamePlatformInput">Platform</label>
+                  <select class="custom-select" id="gamePlatformInput" placeholder="-Platform Select-">
+                    <option selected>------</option>
+                    <option value="1">Nintendo Entertainment System</option>
+                    <option value="2">Super Nintendo Entertainment System</option>
+                    <option value="3">Nintendo 64</option>
+                    <option value="3">Nintendo GameCube</option>
+                    <option value="3">Nintendo Wii</option>
+                    <option value="3">Nintendo WiiU</option>
+                    <option value="3">Nintendo Switch</option>
+                  </select>
+                </div>
               </div>
+              <!--End 1st Row -->
+
+              <!--Start 2nd Row -->
+              <div class="form-group row">
+                <div class="col-sm-3">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gameIsOwned">
+                    <label class="form-check-label" for="gameIsOwned">
+                      Game Owned
+                    </label>
+                  </div>
+                </div>
+                <div class="col-sm 5 justify-content-end">
+                  <!--Empty-->
+                </div>
+                <div class="col-sm 4 justify-content-end">
+                  <input type="text" class="form-control" placeholder="Acquired Date">
+                </div>
+              </div>
+              <!--End 2nd Row -->
+
+              <!--Start 3rd Row -->
+              <div class="form-group row">
+                <div class="col-sm-3">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gameStarted">
+                    <label class="form-check-label" for="gameStarted">
+                      Started Playing
+                    </label>
+                  </div>
+                </div>
+                <div class="col-sm 5 justify-content-end">
+                  <!--Empty-->
+                </div>
+                <div class="col-sm 4 justify-content-end">
+                  <input type="text" class="form-control" placeholder="Start Date">
+                </div>
+              </div>
+              <!--End 3rd Row -->
+
+              <!--Start 4th Row -->
+              <div class="form-group row">
+                <div class="col-sm-3">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gameCompleted">
+                    <label class="form-check-label" for="gameCompleted">
+                      Game Completed
+                    </label>
+                  </div>
+                </div>
+                <div class="col-sm 5 justify-content-end">
+                  <!--Empty-->
+                </div>
+                <div class="col-sm 4 justify-content-end">
+                  <input type="text" class="form-control" placeholder="Complete Date">
+                </div>
+              </div>
+              <!--End 4th Row -->
+
+              <!--Start 5th Row -->
+              <div class="form-group row">
+                <div class="col-sm-6 align-self-center">
+                  <label for="gameCompleteness">Completeness</label>
+                  <select class="custom-select" id="gameCompleteness">
+                    <option selected>------</option>
+                    <option value="1">CiB</option>
+                    <option value="2">Game Only</option>
+                    <option value="3">Box Only</option>
+                  </select>
+                </div>
+                <div class="col-sm-6 align-self-center">
+                  <label for="conditionInput">Condition</label>
+                  <select class="custom-select" id="conditionInput">
+                    <option selected>------</option>
+                    <option value="1">Mint</option>
+                    <option value="2">Excellent</option>
+                    <option value="3">Very Good</option>
+                    <option value="3">Good</option>
+                    <option value="3">Fair</option>
+                    <option value="3">Poor</option>
+                    <option value="3">Very Poor</option>
+                  </select>
+                </div>
+              </div>
+              <!--End 5th Row -->
+
               <button type="submit" class="btn btn-primary">Add</button>
+
             </form>
           </div>
           <div class="modal-footer">
