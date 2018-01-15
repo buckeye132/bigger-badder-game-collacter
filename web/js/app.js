@@ -85,7 +85,7 @@ class GameList {
   addListItem(item) {
     if (this.listSize > 0)
       this.listJquery.append(item);
-    else 
+    else
       this.listJquery.html(item);
 
     this.listSize++;
@@ -105,6 +105,21 @@ class GameList {
   $(function onDocReady() {
     gameList = new GameList("game-list");
     $('#add-game-form').submit(addGameSubmit);
+    $('#acquiredDate').datepicker({
+      todayBtn: "linked",
+      autoclose: true,
+      todayHighlight: true
+    });
+    $('#startedDate').datepicker({
+      todayBtn: "linked",
+      autoclose: true,
+      todayHighlight: true
+    });
+    $('#completedDate').datepicker({
+      todayBtn: "linked",
+      autoclose: true,
+      todayHighlight: true
+    });
   });
 
   function addGameSubmit(event) {
@@ -141,6 +156,3 @@ function maximize() {
 function closeWindow() {
   remote.getCurrentWindow().close();
 }
-
-
-

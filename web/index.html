@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Hello World!</title>
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
@@ -92,62 +93,22 @@
 
               <!--Start 2nd Row -->
               <div class="form-group row">
-                <div class="col-sm-3">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gameIsOwned">
-                    <label class="form-check-label" for="gameIsOwned">
-                      Game Owned
-                    </label>
-                  </div>
-                </div>
-                <div class="col-sm 5 justify-content-end">
-                  <!--Empty-->
+                <div class="col-sm 4 justify-content-end">
+                  <label for="gamePlatformInput">Acquired On</label>
+                  <input id="acquiredDate" type="text" class="form-control" placeholder="Date Acquired">
                 </div>
                 <div class="col-sm 4 justify-content-end">
-                  <input type="text" class="form-control" placeholder="Acquired Date">
+                  <label for="gamePlatformInput">Started On</label>
+                  <input id="startedDate" type="text" class="form-control" placeholder="Date Started">
+                </div>
+                <div class="col-sm 4 justify-content-end">
+                  <label for="gamePlatformInput">Completed On</label>
+                  <input id="completedDate" type="text" class="form-control" placeholder="Date Completed">
                 </div>
               </div>
               <!--End 2nd Row -->
 
               <!--Start 3rd Row -->
-              <div class="form-group row">
-                <div class="col-sm-3">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gameStarted">
-                    <label class="form-check-label" for="gameStarted">
-                      Started Playing
-                    </label>
-                  </div>
-                </div>
-                <div class="col-sm 5 justify-content-end">
-                  <!--Empty-->
-                </div>
-                <div class="col-sm 4 justify-content-end">
-                  <input type="text" class="form-control" placeholder="Start Date">
-                </div>
-              </div>
-              <!--End 3rd Row -->
-
-              <!--Start 4th Row -->
-              <div class="form-group row">
-                <div class="col-sm-3">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gameCompleted">
-                    <label class="form-check-label" for="gameCompleted">
-                      Game Completed
-                    </label>
-                  </div>
-                </div>
-                <div class="col-sm 5 justify-content-end">
-                  <!--Empty-->
-                </div>
-                <div class="col-sm 4 justify-content-end">
-                  <input type="text" class="form-control" placeholder="Complete Date">
-                </div>
-              </div>
-              <!--End 4th Row -->
-
-              <!--Start 5th Row -->
               <div class="form-group row">
                 <div class="col-sm-6 align-self-center">
                   <label for="gameCompleteness">Completeness</label>
@@ -172,9 +133,27 @@
                   </select>
                 </div>
               </div>
-              <!--End 5th Row -->
+              <!--End 3rd Row -->
 
-              <button type="submit" class="btn btn-primary">Add</button>
+              <!--Start 4th Row -->
+              <div class="form-group row align-items-center">
+                <div class="col-sm-6">
+                </div>
+                <div class="col-sm-4" style="text-align: Right;">
+                  <div class="checkbox">
+                    <label class="checkbox no_indent" for="gameOwned" style="margin-bottom: 0px;">
+                      <input class="checkbox" type="checkbox" id="gameOwned">
+                      In Collection
+                    </label>
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+              </div>
+              <!--End 4th Row -->
+
+
 
             </form>
           </div>
@@ -188,6 +167,7 @@
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     <script src="./js/app.js"></script>
   </body>
 </html>
