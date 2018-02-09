@@ -10,8 +10,16 @@ class Game {
     return a.name.localeCompare(b.name);
   }
 
-  constructor(name) {
+  constructor(name,platform,acquiredOn,startedOn,completedOn,completeness,condition,inCollection) {
     this._name = name;
+    this._platform = platform;
+    this._acquiredOn = acquiredOn;
+    this._startedOn = startedOn
+    this._completedOn = completedOn;
+    this._completeness = completeness;
+    this._condition = condition;
+    this._inCollection = inCollection;
+
   }
 
   get name() {
@@ -44,6 +52,7 @@ class GameLibrary {
 
   addGame(game) {
     this._gameSet.add(game);
+    console.log(game);
   }
 
   get gameSet() {
@@ -105,20 +114,8 @@ class GameList {
   $(function onDocReady() {
     gameList = new GameList("game-list");
     $('#add-game-form').submit(addGameSubmit);
-    $('#acquiredDate').datepicker({
-      todayBtn: "linked",
-      autoclose: true,
-      todayHighlight: true
-    });
-    $('#startedDate').datepicker({
-      todayBtn: "linked",
-      autoclose: true,
-      todayHighlight: true
-    });
-    $('#completedDate').datepicker({
-      todayBtn: "linked",
-      autoclose: true,
-      todayHighlight: true
+    $('#edit-game-btn').click(function(){
+      console.log(GameLibrary.gameSet);
     });
   });
 
@@ -134,13 +131,27 @@ class GameList {
   function resetAddGameModal() {
     // grab values
     var nameOfGame = $('#gameNameInput')[0].value;
+    var gamePlatform = $('#gamePlatformInput')[0].value;
+    var acquiredOnDate = $('#acquiredDate')[0].value;
+    var startedOnDate = $('#startedDate')[0].value;
+    var completedOnDate = $('#completedDate')[0].value;
+    var gameCompleteness = $('#gameCompleteness')[0].value;
+    var gameCondition = $('#conditionInput')[0].value;
+    var gameInCollection = $('#gameOwned')[0].checked;
 
     // reset UI
     $('#new-game-modal').modal('hide');
     $('#gameNameInput')[0].value = null;
+    $('#gamePlatformInput')[0].value = null;
+    $('#acquiredDate')[0].value = null;
+    $('#startedDate')[0].value = null;
+    $('#completedDate')[0].value = null;
+    $('#gameCompleteness')[0].value = null;
+    $('#conditionInput')[0].value = null;
+    $('#gameOwned')[0].checked = null;
 
     // return new game data
-    return new Game(nameOfGame);
+    return new Game(nameOfGame,gamePlatform,acquiredOnDate,startedOnDate,completedOnDate,gameCompleteness,gameCondition,gameInCollection);
   }
 }(jQuery));
 

@@ -9,7 +9,6 @@ body {
   padding-right: 0px;
   height: inherit;
 }
-
 /* Nav Bar */
 #top-nav {
   position: absolute;
@@ -43,7 +42,6 @@ body {
   width: calc(100% - 140px);
   height: 34px;
 }
-
 /* Main Body */
 #main-row {
   margin-left: 0px;
@@ -51,7 +49,6 @@ body {
   padding-top: 34px;
   height: inherit;
 }
-
 /* Left Side Bar */
 #side-bar-col {
   padding: 15px;
@@ -59,7 +56,18 @@ body {
 /* New Game Button */
 #add-game-btn {
   width: 100%;
+  height: 75%;
   margin-bottom: 10px;
+}
+/* Edit Game Button */
+#edit-game-btn {
+  width: 100%;
+  height: 75%;
+  margin-bottom: 10px;
+}
+/* Save Game Button */
+#save-game-btn {
+  width: 99%;
 }
 /* Game List */
 #game-list-col {
@@ -69,10 +77,9 @@ body {
   height: calc(100% - 48px);
 }
 ::-webkit-scrollbar {
-    width: 0px;
-    background: transparent; /* make scrollbar transparent */
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
 }
-
 /* Content Card */
 #main-col {
   padding: 15px;

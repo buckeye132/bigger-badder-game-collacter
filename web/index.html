@@ -31,9 +31,13 @@
       <div class="row" id="main-row">
         <!-- Side Bar -->
         <div class="col-lg-4" id="side-bar-col">
-        <div class="row"><div class="col-lg-12">
+        <div class="row"><div class="col-lg-6">
           <button class="btn btn-primary" id="add-game-btn" data-toggle="modal" data-target="#new-game-modal">
             Add Game
+          </button></div>
+          <div class="col-lg-6">
+          <button class="btn btn-primary" id="edit-game-btn" data-toggle="modal" data-target="#edit-game-modal">
+            Edit Game
           </button>
         </div></div>
         <div class="row" id="game-list-row"><div class="col-lg-12" id="game-list-col">
@@ -79,13 +83,32 @@
                   <label for="gamePlatformInput">Platform</label>
                   <select class="custom-select" id="gamePlatformInput" placeholder="-Platform Select-">
                     <option selected>------</option>
-                    <option value="1">Nintendo Entertainment System</option>
-                    <option value="2">Super Nintendo Entertainment System</option>
-                    <option value="3">Nintendo 64</option>
-                    <option value="3">Nintendo GameCube</option>
-                    <option value="3">Nintendo Wii</option>
-                    <option value="3">Nintendo WiiU</option>
-                    <option value="3">Nintendo Switch</option>
+                    <option>--- Nintendo ---</option>
+                    <option>Nintendo Entertainment System</option>
+                    <option>Super Nintendo Entertainment System</option>
+                    <option>Nintendo 64</option>
+                    <option>Nintendo GameCube</option>
+                    <option>Nintendo Wii</option>
+                    <option>Nintendo WiiU</option>
+                    <option>Nintendo Switch</option>
+                    <option>--- Sega ---</option>
+                    <option>Sega Genesis</option>
+                    <option>Sega 32X</option>
+                    <option>Sega Saturn</option>
+                    <option>Sega Dreamcast</option>
+                    <option>--- Sony ---</option>
+                    <option>Sony Playstation</option>
+                    <option>Sony Playstation 2</option>
+                    <option>Sony Playstation 3</option>
+                    <option>Sony Playstation 4</option>
+                    <option>Sony PSP</option>
+                    <option>Sony Vita</option>
+                    <option>--- Microsoft ---</option>
+                    <option>Microsoft Xbox</option>
+                    <option>Microsoft Xbox 360</option>
+                    <option>Microsoft XboxOne</option>
+                    <option>--- Bandai ---</option>
+                    <option>Bandai WonderSwan Color</option>
                   </select>
                 </div>
               </div>
@@ -95,15 +118,15 @@
               <div class="form-group row">
                 <div class="col-sm 4 justify-content-end">
                   <label for="gamePlatformInput">Acquired On</label>
-                  <input id="acquiredDate" type="text" class="form-control" placeholder="Date Acquired">
+                  <input id="acquiredDate" type="date" class="form-control" placeholder="Date Acquired">
                 </div>
                 <div class="col-sm 4 justify-content-end">
                   <label for="gamePlatformInput">Started On</label>
-                  <input id="startedDate" type="text" class="form-control" placeholder="Date Started">
+                  <input id="startedDate" type="date" class="form-control" placeholder="Date Started">
                 </div>
                 <div class="col-sm 4 justify-content-end">
                   <label for="gamePlatformInput">Completed On</label>
-                  <input id="completedDate" type="text" class="form-control" placeholder="Date Completed">
+                  <input id="completedDate" type="date" class="form-control" placeholder="Date Completed">
                 </div>
               </div>
               <!--End 2nd Row -->
@@ -114,22 +137,22 @@
                   <label for="gameCompleteness">Completeness</label>
                   <select class="custom-select" id="gameCompleteness">
                     <option selected>------</option>
-                    <option value="1">CiB</option>
-                    <option value="2">Game Only</option>
-                    <option value="3">Box Only</option>
+                    <option>CiB</option>
+                    <option>Game Only</option>
+                    <option>Box Only</option>
                   </select>
                 </div>
                 <div class="col-sm-6 align-self-center">
                   <label for="conditionInput">Condition</label>
                   <select class="custom-select" id="conditionInput">
                     <option selected>------</option>
-                    <option value="1">Mint</option>
-                    <option value="2">Excellent</option>
-                    <option value="3">Very Good</option>
-                    <option value="3">Good</option>
-                    <option value="3">Fair</option>
-                    <option value="3">Poor</option>
-                    <option value="3">Very Poor</option>
+                    <option>Mint</option>
+                    <option>Excellent</option>
+                    <option>Very Good</option>
+                    <option>Good</option>
+                    <option>Fair</option>
+                    <option>Poor</option>
+                    <option>Very Poor</option>
                   </select>
                 </div>
               </div>
@@ -153,7 +176,131 @@
               </div>
               <!--End 4th Row -->
 
+            </form>
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <!-- Edit Game Modal -->
+    <div class="modal fade" id="edit-game-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit Game</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="edit-game-form">
+
+              <!--Start 1st Row -->
+              <div class="form-group row">
+                <div class="col-sm-8">
+                  <label for="gameNameInput">Name</label>
+                  <input type="text" class="form-control" id="gameNameInput" placeholder="Enter name of game">
+                </div>
+                <div class="col-sm-4">
+                  <label for="gamePlatformInput">Platform</label>
+                  <select class="custom-select" id="gamePlatformInput" placeholder="-Platform Select-">
+                    <option selected>------</option>
+                    <option>--- Nintendo ---</option>
+                    <option>Nintendo Entertainment System</option>
+                    <option>Super Nintendo Entertainment System</option>
+                    <option>Nintendo 64</option>
+                    <option>Nintendo GameCube</option>
+                    <option>Nintendo Wii</option>
+                    <option>Nintendo WiiU</option>
+                    <option>Nintendo Switch</option>
+                    <option>--- Sega ---</option>
+                    <option>Sega Genesis</option>
+                    <option>Sega 32X</option>
+                    <option>Sega Saturn</option>
+                    <option>Sega Dreamcast</option>
+                    <option>--- Sony ---</option>
+                    <option>Sony Playstation</option>
+                    <option>Sony Playstation 2</option>
+                    <option>Sony Playstation 3</option>
+                    <option>Sony Playstation 4</option>
+                    <option>Sony PSP</option>
+                    <option>Sony Vita</option>
+                    <option>--- Microsoft ---</option>
+                    <option>Microsoft Xbox</option>
+                    <option>Microsoft Xbox 360</option>
+                    <option>Microsoft XboxOne</option>
+                    <option>--- Bandai ---</option>
+                    <option>Bandai WonderSwan Color</option>
+                  </select>
+                </div>
+              </div>
+              <!--End 1st Row -->
+
+              <!--Start 2nd Row -->
+              <div class="form-group row">
+                <div class="col-sm 4 justify-content-end">
+                  <label for="gamePlatformInput">Acquired On</label>
+                  <input id="acquiredDate" type="date" class="form-control" placeholder="Date Acquired">
+                </div>
+                <div class="col-sm 4 justify-content-end">
+                  <label for="gamePlatformInput">Started On</label>
+                  <input id="startedDate" type="date" class="form-control" placeholder="Date Started">
+                </div>
+                <div class="col-sm 4 justify-content-end">
+                  <label for="gamePlatformInput">Completed On</label>
+                  <input id="completedDate" type="date" class="form-control" placeholder="Date Completed">
+                </div>
+              </div>
+              <!--End 2nd Row -->
+
+              <!--Start 3rd Row -->
+              <div class="form-group row">
+                <div class="col-sm-6 align-self-center">
+                  <label for="gameCompleteness">Completeness</label>
+                  <select class="custom-select" id="gameCompleteness">
+                    <option selected>------</option>
+                    <option>CiB</option>
+                    <option>Game Only</option>
+                    <option>Box Only</option>
+                  </select>
+                </div>
+                <div class="col-sm-6 align-self-center">
+                  <label for="conditionInput">Condition</label>
+                  <select class="custom-select" id="conditionInput">
+                    <option selected>------</option>
+                    <option>Mint</option>
+                    <option>Excellent</option>
+                    <option>Very Good</option>
+                    <option>Good</option>
+                    <option>Fair</option>
+                    <option>Poor</option>
+                    <option>Very Poor</option>
+                  </select>
+                </div>
+              </div>
+              <!--End 3rd Row -->
+
+              <!--Start 4th Row -->
+              <div class="form-group row align-items-center">
+                <div class="col-sm-2">
+                  <button type="submit" class="btn btn-danger">Delete</button>
+                </div>
+                <div class="col-sm-5"></div>
+                <div class="col-sm-4" style="text-align: Right;">
+                  <div class="checkbox">
+                    <label class="checkbox no_indent" for="gameOwned" style="margin-bottom: 0px;">
+                      <input class="checkbox" type="checkbox" id="gameOwned">
+                      In Collection
+                    </label>
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <button type="submit" id="save-game-btn" class="btn btn-primary">Save</button>
+                </div>
+              </div>
+              <!--End 4th Row -->
 
             </form>
           </div>
