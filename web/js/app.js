@@ -115,7 +115,7 @@ class GameList {
     gameList = new GameList("game-list");
     $('#add-game-form').submit(addGameSubmit);
     $('#edit-game-btn').click(function(){
-      console.log(GameLibrary.gameSet);
+      console.log(gameLibrary.gameSet);
     });
   });
 
