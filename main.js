@@ -10,7 +10,7 @@ function createWindow () {
   Menu.setApplicationMenu(null);
 
   // Create the browser window.
-  win = new BrowserWindow({width: 1500, height: 800, frame: false}) //width 1096 is good
+  win = new BrowserWindow({width: 1120, height: 768, frame: false})
 
   // and load the index.html of the app.
   win.loadURL(url.format({

@@ -53,6 +53,7 @@ class GameLibrary {
   addGame(game) {
     this._gameSet.add(game);
     console.log(game);
+    console.log(this._gameSet);
   }
 
   get gameSet() {
@@ -65,6 +66,7 @@ class GameList {
     return $('<a>', {
       "class": "list-group-item list-group-item-action",
       "href": "#",
+      "id": value,
       "html": value
     });
   }
@@ -113,9 +115,21 @@ class GameList {
 
   $(function onDocReady() {
     gameList = new GameList("game-list");
+
     $('#add-game-form').submit(addGameSubmit);
-    $('#edit-game-btn').click(function(){
-      console.log(gameLibrary.gameSet);
+    $('#game-list').on('click', function(event) {
+      var name = event.target.id;
+
+      $(".card-header").remove();
+      $("#cardInfo").append(
+        '<div class="card-header">' + name + '</div>' +
+        '<div class="card-block">' +
+        '<img class="cover_art" src="http://thegamesdb.net/banners/boxart/original/front/7481-1.jpg" alt="Cover Art">' +
+        '<h4 class="card-title game1">' + nameToDisplay + '</h4>' +
+        '<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>' +
+        '<a href="#" class="btn btn-danger">Delete Title</a>' +
+        '</div>'
+      );
     });
   });
 

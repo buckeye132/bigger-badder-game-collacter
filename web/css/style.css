@@ -36,11 +36,19 @@ body {
   margin-left: 5px;
   margin-right: 5px;
 }
+#main_card {
+  padding: 15px;
+}
 #drag-box {
   -webkit-app-region: drag;
   position: absolute;
   width: calc(100% - 140px);
   height: 34px;
+}
+.cover_art {
+  float: right;
+  width: 50%;
+  height: auto;
 }
 /* Main Body */
 #main-row {
