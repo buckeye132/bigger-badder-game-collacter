@@ -117,21 +117,25 @@ class GameList {
     gameList = new GameList("game-list");
 
     $('#add-game-form').submit(addGameSubmit);
-    $('#game-list').on('click', function(event) {
-      var name = event.target.id;
-
+    $('#game-list').on('click', function(game) {
+      //var name = event.target.platform;
+      var name = GameList.getJqueryListItem(game.platform);
       $(".card-header").remove();
       $("#cardInfo").append(
         '<div class="card-header">' + name + '</div>' +
         '<div class="card-block">' +
         '<img class="cover_art" src="http://thegamesdb.net/banners/boxart/original/front/7481-1.jpg" alt="Cover Art">' +
-        '<h4 class="card-title game1">' + nameToDisplay + '</h4>' +
+        '<h4 class="card-title game1">' + name + '</h4>' +
         '<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>' +
         '<a href="#" class="btn btn-danger">Delete Title</a>' +
         '</div>'
       );
     });
   });
+
+  function importGamesDBInfo(){
+
+  }
 
   function addGameSubmit(event) {
     event.preventDefault();
