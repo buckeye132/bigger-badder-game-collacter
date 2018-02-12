@@ -128,10 +128,16 @@ class GameList {
         '<h4 class="card-title game1">' + name + '</h4>' +
         '<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>' +
         '<a href="#" class="btn btn-danger">Delete Title</a>' +
-        '</div>' 
+        '</div>'
       );
     });
   });
+
+  function getGameInSet(){
+    for (let game of gameLibrary._gameSet.values()){
+      return game;
+    }
+  }
 
   function importGamesDBInfo(){
 
