@@ -1,5 +1,7 @@
 const entypo = require('entypo');
 const remote = require('electron').remote;
+const igdb = require('igdb-api-node').default;
+const client = igdb('274ec68ab7ad96b0249611e4d3461007');
 //const fs = require('fs');
 
 document.body.insertBefore(entypo.getNode(), document.body.firstChild);
@@ -118,29 +120,53 @@ class GameList {
 
     $('#add-game-form').submit(addGameSubmit);
     $('#game-list').on('click', function(game) {
-      //var name = event.target.platform;
-      var name = GameList.getJqueryListItem(game.platform);
-      $(".card-header").remove();
+      var name = event.target.id;
+
+      importGameCover(name)
+      //var name = GameList.getJqueryListItem(game._platform);
+      $(".card-block").remove();
       $("#cardInfo").append(
-        '<div class="card-header">' + name + '</div>' +
         '<div class="card-block">' +
         '<img class="cover_art" src="http://thegamesdb.net/banners/boxart/original/front/7481-1.jpg" alt="Cover Art">' +
         '<h4 class="card-title game1">' + name + '</h4>' +
-        '<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>' +
+        '<p class="card-text">'+ getGameInSet(name) +'</p>' +
         '<a href="#" class="btn btn-danger">Delete Title</a>' +
         '</div>'
       );
     });
   });
 
-  function getGameInSet(){
+  function getGameInSet(nameOfGame){
     for (let game of gameLibrary._gameSet.values()){
-      return game;
+      if (game._name == nameOfGame){
+        platform  = game._platform
+        acquiredOn = game._acquiredOn
+        startedOn = game._startedOn
+        completedOn = game._completedOn
+        completeness = game._completeness
+        condition = game._condition
+        inCollection = game._inCollection
+        return 'Platform: ' + platform + '<br />Acquired On: ' + acquiredOn + '<br />Started On: ' + startedOn + '<br />Completed On: ' + completedOn + '<br />Completeness: ' + completeness + '<br />Condition: ' + condition + '<br />In Collection: ' + inCollection;
+      }
     }
   }
 
-  function importGamesDBInfo(){
+  function importGameCover(nameOfGame){
+    var igdbGameId;
+    var gameInfoObject = {};
 
+    fetch('https://api-2445582011268.apicast.io/games/?search='+nameOfGame+'&fields=id,cover', {
+      headers: {
+        'user-key': '274ec68ab7ad96b0249611e4d3461007',
+        'Accept': 'application/json'
+      }
+    }).then(response => response.json())
+    .then(data => console.log(data.length))
+    // .then(function(data) {
+    //   for (var i = 0; i < data.length; i++){
+    //
+    //   }
+    // })
   }
 
   function addGameSubmit(event) {
@@ -191,3 +217,14 @@ function maximize() {
 function closeWindow() {
   remote.getCurrentWindow().close();
 }
+
+
+
+// Request URL
+//     https://api-endpoint.igdb.com
+// App name
+//     Nick Pittak's App
+// Key
+//     274ec68ab7ad96b0249611e4d3461007
+//
+//     Add this as a user-key parameter to your API calls to authenticate.
