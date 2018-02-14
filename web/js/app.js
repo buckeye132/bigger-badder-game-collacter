@@ -41,7 +41,7 @@ class GameLibrary {
     /*var obj = JSON.parse(fs.readFileSync(this._libraryFilePath, 'utf8'));
     this._gameSet.clear();
 
-    if (obj.games !== null) {
+    if (obj.games !=== null) {
       obj.games.forEach(function(game) {
         this._gameSet.add(game)
       }, this);
@@ -113,6 +113,7 @@ class GameList {
 /* insertion point */
 (function scopeWrapper($) {
   var gameList;
+  var platformIDs = require('./json/platforms.json');
   var gameLibrary = new GameLibrary();
 
   $(function onDocReady() {
@@ -121,7 +122,8 @@ class GameList {
     $('#add-game-form').submit(addGameSubmit);
     $('#game-list').on('click', function(game) {
       var name = event.target.id;
-      // var consoleID = getGameConsole(name);  <-- Grabs Console ID from JSON
+      var consoleID = getGameConsole(name);  // <-- Grabs Console ID from JSON
+
 
       importGameCover(name,49)
       //var name = GameList.getJqueryListItem(game._platform);
@@ -137,29 +139,24 @@ class GameList {
     });
   });
 
-  function getGameConsole(nameOfGame){  // <---   Fucntion to grab the consoleID 
+  function getGameConsole(nameOfGame){  // <---   Fucntion to grab the consoleID
     for (let game of gameLibrary._gameSet.values()){
-      if (game._name == nameOfGame){
-        var platform  = game._platform
+      if (game._name === nameOfGame){
+        var platform  = game._platform;
 
-        fetch('./json/platforms.json')
-        .then(response => response.json())
-        .then((data) => {
-          for (let i = 0; i < data.length; i++){
-            if (data[i].name == platform){
-              var platformID = data[i].id;
-              // return platformID;
-              console.log(platformID);
-            }
+        for (let i = 0; i < platformIDs.length; i++){
+          if (platformIDs[i].name === platform){
+            var platformID = platformIDs[i].id;
+            console.log(platformID);
           }
-        })
+        }
       }
     }
   }
 
   function getGameInSet(nameOfGame){
     for (let game of gameLibrary._gameSet.values()){
-      if (game._name == nameOfGame){
+      if (game._name === nameOfGame){
         platform  = game._platform
         acquiredOn = game._acquiredOn
         startedOn = game._startedOn
@@ -184,7 +181,7 @@ class GameList {
     }).then(response => response.json())
     .then((data) => {
       for (let i = 0; i < data.length; i++){
-        if (data[i].name == nameOfGame){
+        if (data[i].name === nameOfGame){
           var coverArtID = data[i].cover.cloudinary_id;
           $('.cover_art').attr('src', 'https://images.igdb.com/igdb/image/upload/t_cover_big/'+coverArtID+'.jpg');
           // console.log(data[i].cover.cloudinary_id)
