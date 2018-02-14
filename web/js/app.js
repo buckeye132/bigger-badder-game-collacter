@@ -125,7 +125,7 @@ class GameList {
       var consoleID = getGameConsole(name);  // <-- Grabs Console ID from JSON
 
 
-      importGameCover(name,49)
+      importGameCover(name,consoleID)
       //var name = GameList.getJqueryListItem(game._platform);
       $(".card-block").remove();
       $("#cardInfo").append(
