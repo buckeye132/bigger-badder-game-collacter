@@ -21,7 +21,16 @@ class Game {
     this._completeness = completeness;
     this._condition = condition;
     this._inCollection = inCollection;
-
+    this._platformID;
+    this._gameID;
+    this._summary;
+    this._category;
+    this._gameModes;
+    this._themes;
+    this._genres;
+    this._coverArt;
+    this._esrbRating;
+    this._timeToBeat;
   }
 
   get name() {
@@ -112,6 +121,7 @@ class GameList {
 
 /* insertion point */
 (function scopeWrapper($) {
+  // Setting up variables that can be compiled before the page is loaded
   var gameList;
   var platformIDs = require('./json/platforms.json');
   var gameLibrary = new GameLibrary();
@@ -121,12 +131,10 @@ class GameList {
 
     $('#add-game-form').submit(addGameSubmit);
     $('#game-list').on('click', function(game) {
-      var name = event.target.id;
-      var consoleID = getGameConsole(name);  // <-- Grabs Console ID from JSON
+      var name = event.target.id; // <-- grabs the ID for the game from the field off the gamelist HTML item
+      var platformID = getGamePlatform(name);
 
-
-      importGameCover(name,consoleID)
-      //var name = GameList.getJqueryListItem(game._platform);
+      importGameInformation(name,platformID)
       $(".card-block").remove();
       $("#cardInfo").append(
         '<div class="card-block">' +
@@ -139,7 +147,10 @@ class GameList {
     });
   });
 
-  function getGameConsole(nameOfGame){  // <---   Fucntion to grab the consoleID
+  // This fucntion grabs the platformID by itterating through the _gameSet for the game you clicked on in the list.
+  // The code then finds the platorm for that item and looks up the platform ID from the Platforms.JSON object to be
+  //   used in the API lookup for the game info
+  function getGamePlatform(nameOfGame){
     for (let game of gameLibrary._gameSet.values()){
       if (game._name === nameOfGame){
         var platform  = game._platform;
@@ -147,13 +158,15 @@ class GameList {
         for (let i = 0; i < platformIDs.length; i++){
           if (platformIDs[i].name === platform){
             var platformID = platformIDs[i].id;
-            console.log(platformID);
+            return platformID;
           }
         }
       }
     }
   }
 
+  // This code is itterating through the _gameSet to find the game info from the item you clicked in the list.
+  // It then takes that info and returns out HTML to display in the body card to display to the user
   function getGameInSet(nameOfGame){
     for (let game of gameLibrary._gameSet.values()){
       if (game._name === nameOfGame){
@@ -164,43 +177,62 @@ class GameList {
         completeness = game._completeness
         condition = game._condition
         inCollection = game._inCollection
+
         return 'Platform: ' + platform + '<br />Acquired On: ' + acquiredOn + '<br />Started On: ' + startedOn + '<br />Completed On: ' + completedOn + '<br />Completeness: ' + completeness + '<br />Condition: ' + condition + '<br />In Collection: ' + inCollection;
       }
     }
   }
 
-  function importGameCover(nameOfGame,platform){
+  // This entire function grabs the cover art for the game through an API call.
+  // -- REFACTOR THIS TO LIMIT THE AMOUNT OF API CALLS; HAVE IT GRAB ALL RELIVANT DATA AND ADD IT TO THE GAME OBJECT -- //
+  function importGameInformation(nameOfGame,platform){
     var igdbGameId;
     var gameInfoObject = [];
+    // This is all formatting for searching of the SLUG field below
+    var nameTrimed = nameOfGame.trim();
+    var nameNoSpecial = nameTrimed.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');
+    var nameNoSpaces = nameNoSpecial.replace(/[^a-zA-Z0-9]/g, '-');
+    var nameSlug = nameNoSpaces.toLowerCase();
+    // Formatting of the name for SlUG ends
 
-    fetch('https://api-2445582011268.apicast.io/games/?search='+nameOfGame+'&fields=name,id,cover,platforms,first_release_date,summary,storyline,total_rating,category,time_to_beat,game_modes,themes,genres,esrb&filter[platforms][eq]='+platform, {
+    // The fetch below is sending a GET request to the IGDB API
+    fetch('https://api-2445582011268.apicast.io/games/?search='+nameOfGame+'&fields=name,id,cover,platforms,first_release_date,summary,storyline,total_rating,category,time_to_beat,game_modes,themes,genres,esrb,slug,version_parent&filter[platforms][eq]='+platform+'&filter[category][any]=0,3,4&limit=50', {
       headers: {
-        'user-key': '274ec68ab7ad96b0249611e4d3461007',
+        'user-key': '274ec68ab7ad96b0249611e4d3461007', // API key for IGDB.com
         'Accept': 'application/json'
-      }
+      } // The API reponds with a promise (the info) that then needs to be sent to a JSON parser
     }).then(response => response.json())
-    .then((data) => {
+    .then((data) => { // The code below here is then itterating through the JSON object looking for a match for the game
       for (let i = 0; i < data.length; i++){
-        if (data[i].name === nameOfGame){
-          var coverArtID = data[i].cover.cloudinary_id;
-          $('.cover_art').attr('src', 'https://images.igdb.com/igdb/image/upload/t_cover_big/'+coverArtID+'.jpg');
-          // console.log(data[i].cover.cloudinary_id)
+        if (data[i].category === 0 & data[i].slug === nameSlug){
+           // When a match is found it returns the coverArtID and displays it
+          var coverArtID = 'https://images.igdb.com/igdb/image/upload/t_cover_big/'+data[i].cover.cloudinary_id+'.jpg';
+          var coverArtCID = data[i].cover.cloudinary_id;
+
+          for (let game of gameLibrary._gameSet.values()){
+            if (game._name === nameOfGame){
+              game._coverArt = coverArtID;
+            }
+          }
+
+          $('.cover_art').attr('src', 'https://images.igdb.com/igdb/image/upload/t_cover_big/'+coverArtCID+'.jpg');
         }
       }
     })
   }
 
+  // Code for the Sumbit button on the Add Game Modal
   function addGameSubmit(event) {
     event.preventDefault();
 
-    gameLibrary.addGame(resetAddGameModal());
-    gameList.displayLibrarySortByName(gameLibrary);
+    gameLibrary.addGame(resetAddGameModal()); //This is adding the game info to the Library then it resets the form
+    gameList.displayLibrarySortByName(gameLibrary);// This is then telling the game list to display the info in the Library
 
     return false;
   }
 
   function resetAddGameModal() {
-    // grab values
+    // grab values from the form
     var nameOfGame = $('#gameNameInput')[0].value;
     var gamePlatform = $('#gamePlatformInput')[0].value;
     var acquiredOnDate = $('#acquiredDate')[0].value;
@@ -210,7 +242,7 @@ class GameList {
     var gameCondition = $('#conditionInput')[0].value;
     var gameInCollection = $('#gameOwned')[0].checked;
 
-    // reset UI
+    // reset UI for the next game to have a clean slate
     $('#new-game-modal').modal('hide');
     $('#gameNameInput')[0].value = null;
     $('#gamePlatformInput')[0].value = null;
@@ -238,14 +270,3 @@ function maximize() {
 function closeWindow() {
   remote.getCurrentWindow().close();
 }
-
-
-
-// Request URL
-//     https://api-endpoint.igdb.com
-// App name
-//     Nick Pittak's App
-// Key
-//     274ec68ab7ad96b0249611e4d3461007
-//
-//     Add this as a user-key parameter to your API calls to authenticate.
