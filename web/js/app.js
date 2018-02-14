@@ -121,13 +121,14 @@ class GameList {
     $('#add-game-form').submit(addGameSubmit);
     $('#game-list').on('click', function(game) {
       var name = event.target.id;
+      // var consoleID = getGameConsole(name);  <-- Grabs Console ID from JSON
 
-      importGameCover(name)
+      importGameCover(name,49)
       //var name = GameList.getJqueryListItem(game._platform);
       $(".card-block").remove();
       $("#cardInfo").append(
         '<div class="card-block">' +
-        '<img class="cover_art" src="http://thegamesdb.net/banners/boxart/original/front/7481-1.jpg" alt="Cover Art">' +
+        '<img class="cover_art" src="" alt="Cover Art">' +
         '<h4 class="card-title game1">' + name + '</h4>' +
         '<p class="card-text">'+ getGameInSet(name) +'</p>' +
         '<a href="#" class="btn btn-danger">Delete Title</a>' +
@@ -135,6 +136,26 @@ class GameList {
       );
     });
   });
+
+  function getGameConsole(nameOfGame){  // <---   Fucntion to grab the consoleID 
+    for (let game of gameLibrary._gameSet.values()){
+      if (game._name == nameOfGame){
+        var platform  = game._platform
+
+        fetch('./json/platforms.json')
+        .then(response => response.json())
+        .then((data) => {
+          for (let i = 0; i < data.length; i++){
+            if (data[i].name == platform){
+              var platformID = data[i].id;
+              // return platformID;
+              console.log(platformID);
+            }
+          }
+        })
+      }
+    }
+  }
 
   function getGameInSet(nameOfGame){
     for (let game of gameLibrary._gameSet.values()){
@@ -151,22 +172,25 @@ class GameList {
     }
   }
 
-  function importGameCover(nameOfGame){
+  function importGameCover(nameOfGame,platform){
     var igdbGameId;
-    var gameInfoObject = {};
+    var gameInfoObject = [];
 
-    fetch('https://api-2445582011268.apicast.io/games/?search='+nameOfGame+'&fields=id,cover', {
+    fetch('https://api-2445582011268.apicast.io/games/?search='+nameOfGame+'&fields=name,id,cover,platforms,first_release_date,summary,storyline,total_rating,category,time_to_beat,game_modes,themes,genres,esrb&filter[platforms][eq]='+platform, {
       headers: {
         'user-key': '274ec68ab7ad96b0249611e4d3461007',
         'Accept': 'application/json'
       }
     }).then(response => response.json())
-    .then(data => console.log(data.length))
-    // .then(function(data) {
-    //   for (var i = 0; i < data.length; i++){
-    //
-    //   }
-    // })
+    .then((data) => {
+      for (let i = 0; i < data.length; i++){
+        if (data[i].name == nameOfGame){
+          var coverArtID = data[i].cover.cloudinary_id;
+          $('.cover_art').attr('src', 'https://images.igdb.com/igdb/image/upload/t_cover_big/'+coverArtID+'.jpg');
+          // console.log(data[i].cover.cloudinary_id)
+        }
+      }
+    })
   }
 
   function addGameSubmit(event) {
