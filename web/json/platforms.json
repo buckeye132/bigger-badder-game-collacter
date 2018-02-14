@@ -1,15 +1,15 @@
 [
     {
         "id": 11,
-        "name": "Xbox"
+        "name": "Microsoft Xbox"
     },
     {
         "id": 12,
-        "name": "Xbox 360"
+        "name": "Microsoft Xbox 360"
     },
     {
         "id": 49,
-        "name": "Xbox One"
+        "name": "Microsoft Xbox One"
     },
     {
         "id": 64,
@@ -41,35 +41,35 @@
     },
     {
         "id": 7,
-        "name": "PlayStation"
+        "name": "Sony PlayStation"
     },
     {
         "id": 8,
-        "name": "PlayStation 2"
+        "name": "Sony PlayStation 2"
     },
     {
         "id": 9,
-        "name": "PlayStation 3"
+        "name": "Sony PlayStation 3"
     },
     {
         "id": 48,
-        "name": "PlayStation 4"
+        "name": "Sony PlayStation 4"
     },
     {
         "id": 38,
-        "name": "PlayStation Portable"
+        "name": "Sony PlayStation Portable"
     },
     {
         "id": 46,
-        "name": "PlayStation Vita"
+        "name": "Sony PlayStation Vita"
     },
     {
         "id": 18,
-        "name": "Nintendo Entertainment System (NES)"
+        "name": "Nintendo Entertainment System"
     },
     {
         "id": 19,
-        "name": "Super Nintendo Entertainment System (SNES)"
+        "name": "Super Nintendo Entertainment System"
     },
     {
         "id": 4,
@@ -81,11 +81,11 @@
     },
     {
         "id": 5,
-        "name": "Wii"
+        "name": "Nintendo Wii"
     },
     {
         "id": 41,
-        "name": "Wii U"
+        "name": "Nintendo WiiU"
     },
     {
         "id": 130,
@@ -113,7 +113,7 @@
     },
     {
         "id": 123,
-        "name": "WonderSwan Color"
+        "name": "Bandai WonderSwan Color"
     }
 
 ]
