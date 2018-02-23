@@ -124,6 +124,7 @@ class GameList {
   // Setting up variables that can be compiled before the page is loaded
   var gameList;
   var platformIDs = require('./json/platforms.json');
+  //var grabDB = require('./js/grabDB.js');
   var gameLibrary = new GameLibrary();
 
   $(function onDocReady() {
@@ -131,6 +132,7 @@ class GameList {
 
     $('#add-game-form').submit(addGameSubmit);
     $('#game-list').on('click', function(game) {
+      grabDB();
       var name = event.target.id; // <-- grabs the ID for the game from the field off the gamelist HTML item
       var platformID = getGamePlatform(name);
 
