@@ -185,8 +185,8 @@ class GameList {
     }
   }
 
-  // This entire function grabs the cover art for the game through an API call.
-  // -- REFACTOR THIS TO LIMIT THE AMOUNT OF API CALLS; HAVE IT GRAB ALL RELIVANT DATA AND ADD IT TO THE GAME OBJECT -- //
+  // *This entire function grabs the cover art for the game through an API call.
+  // TODO: REFACTOR THIS TO LIMIT THE AMOUNT OF API CALLS; HAVE IT GRAB ALL RELIVANT DATA AND ADD IT TO THE GAME OBJECT -- //
   function importGameInformation(nameOfGame,platform){
     var igdbGameId;
     var gameInfoObject = [];
